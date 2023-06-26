@@ -1,0 +1,50 @@
+.approved {
+  margin-right: 10px;
+  color: #80d92c !important;
+  font-weight: 800 !important;
+}
+
+.rejected {
+  margin-right: 10px;
+  color: #d9512c !important;
+  font-weight: 800 !important;
+}
+
+.pending {
+  margin-right: 10px;
+  color: #f29339 !important;
+  font-weight: 800 !important;
+}
+
+.statusText {
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: row;
+  align-items: center;
+}
+
+.requestNameDiv {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  height: 40px;
+}
+
+@media screen and (max-width: 576px) {
+  .requestNameDiv {
+    margin-bottom: 20px;
+  }
+  .createSlotsSpace {
+    margin-top: 16px !important;
+  }
+}
+
+.tags {
+  display: flex;
+  padding-left: 5px;
+  align-items: center;
+  flex-direction: row;
+  padding-right: 5px;
+  border: 1px solid #d9d9d950;
+}
