@@ -1,8 +1,8 @@
 import Google from '@/components/Shared/Google'
 import { getServerSession } from 'next-auth/next'
 import { Text, Button, Card } from '@geist-ui/core'
-import { getProviders, signIn } from 'next-auth/react'
 import { authOptions } from './api/auth/[...nextauth]'
+import { ClientSafeProvider, getProviders, signIn } from 'next-auth/react'
 
 export default function ({ providers }) {
   return (
@@ -14,7 +14,7 @@ export default function ({ providers }) {
         <Text className="font-medium" font={1.5} h1>
           Sign In To Your Account
         </Text>
-        {Object.values(providers).map((provider) => (
+        {Object.values(providers).map((provider: ClientSafeProvider) => (
           <Button className="!w-full" type="secondary" icon={<Google />} mt={1} key={provider.name} onClick={() => signIn(provider.id)}>
             Sign in with {provider.name}
           </Button>

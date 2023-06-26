@@ -19,13 +19,13 @@ export default function ({ Component, pageProps: { session, ...pageProps } }) {
     document.body.removeAttribute('style')
     const theme = window.localStorage.getItem('theme')
     if (themes.includes(theme)) {
-      document.documentElement.classList = theme
       setThemeType(theme)
+      document.documentElement.setAttribute('class', theme)
     }
   }, [])
   const switchTheme = useCallback((theme) => {
-    document.documentElement.classList = theme
     setThemeType(theme)
+    document.documentElement.setAttribute('class', theme)
     if (typeof window !== 'undefined' && window.localStorage) window.localStorage.setItem('theme', theme)
   }, [])
   return (
@@ -34,6 +34,7 @@ export default function ({ Component, pageProps: { session, ...pageProps } }) {
       <SessionProvider session={session}>
         <GeistProvider themeType={themeType}>
           <CssBaseline />
+          {/* @ts-ignore */}
           <PrefersContext.Provider value={{ themeType, switchTheme }}>
             {pathname.includes('/admin') && !pathname.includes('login') ? <Menu /> : <Navbar {...pageProps} />}
             <div className="flex min-h-[90vh] flex-col">

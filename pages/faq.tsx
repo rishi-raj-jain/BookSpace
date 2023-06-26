@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react'
 import { Collapse, Loading, Note, Divider, Text } from '@geist-ui/core'
 
 export default function () {
-  const [faqs, setFaqs] = useState()
+  const [faqs, setFaqs] = useState([])
   const [loading, setLoading] = useState(true)
   useEffect(() => {
     fetch('/api/faq/get')

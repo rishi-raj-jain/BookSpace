@@ -2,7 +2,6 @@ import { useEffect } from 'react'
 import dynamic from 'next/dynamic'
 import { useRouter } from 'next/router'
 import { Divider, Text } from '@geist-ui/core'
-import { ADMIN_DASHBOARD_TITLES } from '@/lib/admin/menu'
 
 export default function () {
   const router = useRouter()
@@ -59,10 +58,23 @@ export default function () {
     }
   }
 
+  const title = () => {
+    return {
+      faqs: 'All FAQs',
+      slots: 'Time Slots',
+      more: 'Admin Users',
+      spaces: 'All Spaces',
+      contexts: 'All Contexts',
+      feedbacks: 'All Feedbacks',
+      requests: 'Student Requests',
+      departments: 'All Departments',
+    }[router.query?.page?.toString()]
+  }
+
   return (
     <>
       <Text mt={1.3} h3>
-        {ADMIN_DASHBOARD_TITLES[router.query.page]}
+        {title()}
       </Text>
       <Divider />
       {view()}
