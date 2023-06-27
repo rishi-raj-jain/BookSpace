@@ -176,7 +176,7 @@ export default function () {
               window['feedback'] = e.target.value
             }}
           />
-          <Button className="max-w-max" type="secondary" mt={1} htmlType="submit">
+          <Button className="max-w-max" mt={1} htmlType="submit">
             Submit
           </Button>
         </form>
