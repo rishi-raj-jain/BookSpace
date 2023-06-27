@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { Button, Input, Grid, useToasts, Checkbox, Image, Text } from '@geist-ui/core'
+import { Button, Input, Grid, useToasts, Checkbox, Text } from '@geist-ui/core'
 
 const CreateSpace = () => {
   const [img, setImg] = useState('')
@@ -106,7 +106,7 @@ const CreateSpace = () => {
             boxShadow: img === '/assets/images/lib.png' ? '1px 1px 1px 1px #C1C1C1' : '',
           }}
         >
-          <Image width={`${1463 * 0.1}px`} height={`${621 * 0.1}px`} src="/assets/images/lib.png" style={{ objectFit: 'contain' }} />
+          {/* <Image width={`${1463 * 0.1}px`} height={`${621 * 0.1}px`} src="/assets/images/lib.png" style={{ objectFit: 'contain' }} /> */}
           <Text h5 mt={1} mb={0} p={0}>
             Library
           </Text>
@@ -123,7 +123,7 @@ const CreateSpace = () => {
             boxShadow: img === '/assets/images/oldacad.png' ? '1px 1px 1px 1px #C1C1C1' : '',
           }}
         >
-          <Image width={`${1463 * 0.1}px`} height={`${621 * 0.1}px`} src="/assets/images/oldacad.png" style={{ objectFit: 'contain' }} />
+          {/* <Image width={`${1463 * 0.1}px`} height={`${621 * 0.1}px`} src="/assets/images/oldacad.png" style={{ objectFit: 'contain' }} /> */}
           <Text h5 mt={1} mb={0} p={0}>
             Old Academic Block
           </Text>
@@ -140,7 +140,7 @@ const CreateSpace = () => {
             boxShadow: img === '/assets/images/seminar.png' ? '1px 1px 1px 1px #C1C1C1' : '',
           }}
         >
-          <Image width={`${1464 * 0.1}px`} height={`${620 * 0.1}px`} src="/assets/images/seminar.png" style={{ objectFit: 'contain' }} />
+          {/* <Image width={`${1464 * 0.1}px`} height={`${620 * 0.1}px`} src="/assets/images/seminar.png" style={{ objectFit: 'contain' }} /> */}
           <Text h5 mt={1} mb={0} p={0}>
             Seminar Block
           </Text>
@@ -157,7 +157,7 @@ const CreateSpace = () => {
             boxShadow: img === '/assets/images/sportsblock.jpeg' ? '1px 1px 1px 1px #C1C1C1' : '',
           }}
         >
-          <Image width={`${1280 * 0.15}px`} height={`${426 * 0.15}px`} style={{ objectFit: 'contain' }} src="/assets/images/sportsblock.jpeg" />
+          {/* <Image width={`${1280 * 0.15}px`} height={`${426 * 0.15}px`} style={{ objectFit: 'contain' }} src="/assets/images/sportsblock.jpeg" /> */}
           <Text h5 mt={1} mb={0} p={0}>
             Sports Block
           </Text>
@@ -174,7 +174,7 @@ const CreateSpace = () => {
             boxShadow: img === '/assets/images/openspaces.png' ? '1px 1px 1px 1px #C1C1C1' : '',
           }}
         >
-          <Image width={`${1280 * 0.15}px`} height={`${426 * 0.15}px`} style={{ objectFit: 'contain' }} src="/assets/images/openspaces.png" />
+          {/* <Image width={`${1280 * 0.15}px`} height={`${426 * 0.15}px`} style={{ objectFit: 'contain' }} src="/assets/images/openspaces.png" /> */}
           <Text h5 mt={1} mb={0} p={0}>
             Open Spaces
           </Text>
@@ -191,7 +191,7 @@ const CreateSpace = () => {
             boxShadow: img === '/assets/images/fms.png' ? '1px 1px 1px 1px #C1C1C1' : '',
           }}
         >
-          <Image width={`${1280 * 0.15}px`} height={`${426 * 0.15}px`} style={{ objectFit: 'contain' }} src="/assets/images/fms.png" />
+          {/* <Image width={`${1280 * 0.15}px`} height={`${426 * 0.15}px`} style={{ objectFit: 'contain' }} src="/assets/images/fms.png" /> */}
           <Text h5 mt={1} mb={0} p={0}>
             FMS
           </Text>
@@ -208,7 +208,7 @@ const CreateSpace = () => {
             boxShadow: img === '/assets/images/newacad.jpeg' ? '1px 1px 1px 1px #C1C1C1' : '',
           }}
         >
-          <Image width={`${1280 * 0.1}px`} height={`${639 * 0.1}px`} style={{ objectFit: 'contain' }} src="/assets/images/newacad.jpeg" />
+          {/* <Image width={`${1280 * 0.1}px`} height={`${639 * 0.1}px`} style={{ objectFit: 'contain' }} src="/assets/images/newacad.jpeg" /> */}
           <Text h5 mt={1} mb={0} p={0}>
             R&D Block
           </Text>

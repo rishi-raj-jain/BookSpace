@@ -52,7 +52,7 @@ export default function () {
               router.push('/dashboard')
             }}
           >
-            My Dashboard
+            My Bookings
           </Popover.Item>
           <Popover.Item
             onClick={() => {

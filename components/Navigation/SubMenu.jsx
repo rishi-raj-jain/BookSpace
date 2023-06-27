@@ -36,11 +36,11 @@ export default function () {
           transition: box-shadow 0.2s ease;
         }
         .submenu_sticky {
-          position: fixed;
-          z-index: 1100;
           top: 0;
-          right: 0;
           left: 0;
+          right: 0;
+          z-index: 1000;
+          position: fixed;
           background: ${theme.palette.background};
           box-shadow: ${theme.type === 'dark' ? `inset 0 -1px ${theme.palette.border}` : 'rgba(0, 0, 0, 0.1) 0 0 15px 0'};
         }
@@ -56,11 +56,11 @@ export default function () {
           border: none;
         }
         .submenu__inner :global(.tab) {
-          height: calc(100% - 2px);
           padding-top: 0;
           padding-bottom: 0;
-          color: ${theme.palette.accents_5};
           font-size: 0.875rem;
+          height: calc(100% - 2px);
+          color: ${theme.palette.accents_5};
         }
         .submenu__inner :global(.tab):hover {
           color: ${theme.palette.foreground};

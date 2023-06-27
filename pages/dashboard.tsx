@@ -69,7 +69,7 @@ export default function () {
       </Text>
       <Divider />
       <Tabs initialValue="1">
-        <Tabs.Item label="My Requests" value="1">
+        <Tabs.Item label="My Bookings" value="1">
           <Text mt={1} h3>
             Sort By
           </Text>
@@ -90,7 +90,7 @@ export default function () {
             )}
           </div>
         </Tabs.Item>
-        <Tabs.Item label="My Event Requests" value="2">
+        <Tabs.Item label="My Event Bookings" value="2">
           <Text mt={1} h3>
             Sort By
           </Text>
