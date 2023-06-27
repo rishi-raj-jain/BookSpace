@@ -116,7 +116,7 @@ export default function () {
       {space && space.length > 0 && (
         <div className="lg-0 mt-8 flex space-x-4 overflow-x-scroll px-6">
           {space.map((i) => (
-            <div key={i.createdAt} className="flex min-w-min flex-col space-y-4 rounded border px-8 py-4 hover:border-black dark:border-white/25 dark:hover:border-white/50">
+            <div key={i.createdAt} className="flex min-w-[200px] flex-col space-y-4 rounded border px-8 py-4 hover:border-black dark:border-white/25 dark:hover:border-white/50">
               {i && i.name && <span className="text-3xl font-semibold">{i.name}</span>}
               {i && i.spaceType && <span className="text-md text-gray-600 dark:text-gray-200">{`Space Type: ${i.spaceType}`}</span>}
               {i && i.capacity && <span className="text-md text-gray-600 dark:text-gray-200">{`Capacity: ${i.capacity}`}</span>}

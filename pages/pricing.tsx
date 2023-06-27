@@ -11,10 +11,12 @@ const pointers = [
 
 export default function () {
   return (
-    <div className="mt-16 flex w-full flex-col items-center px-6 lg:px-0">
+    <div className="mt-16 flex w-full flex-col items-center">
       <h1 className="text-4xl font-extrabold text-black dark:text-white sm:text-5xl">Pricing</h1>
-      <p className="mt-6 text-black/50 dark:text-white/50 sm:text-lg">Empower Your Space Booking. Simplify. Manage. BookSpace Self-Hosted.</p>
-      <section className="mt-8 flex w-[250px] flex-col items-center rounded-lg border px-6 py-8 dark:border-white/25 sm:px-8">
+      <p className="mt-6 max-w-[250px] text-center text-black/50 dark:text-white/50 sm:max-w-full sm:text-lg">
+        Empower Your Space Booking. Simplify. Manage. BookSpace Self-Hosted.
+      </p>
+      <section className="mt-8 flex w-[250px] flex-col items-center rounded-lg border px-6 py-8 dark:border-white/25 sm:w-[350px] sm:px-8">
         <h3 className="text-lg">All Access</h3>
         <p className="mt-2 text-base">Perfect for institutions.</p>
         <span className="mt-4 text-6xl">$299</span>

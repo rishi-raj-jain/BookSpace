@@ -1,8 +1,8 @@
 export default function () {
   return (
-    <div className="mt-16 flex w-full flex-col items-center px-6 lg:px-0">
+    <div className="mt-16 flex w-full flex-col items-center">
       <h1 className="text-4xl font-extrabold text-black dark:text-white sm:text-5xl">Changelog</h1>
-      <p className="mt-6 text-black/50 dark:text-white/50 sm:text-lg">Follow the latest updates and improvements of BookSpace.</p>
+      <p className="mt-6 max-w-[250px] text-center text-black/50 dark:text-white/50 sm:max-w-full sm:text-lg">Follow the latest updates and improvements of BookSpace.</p>
       <div className="relative grid gap-8 py-8 sm:py-12 lg:grid-cols-4 lg:py-24">
         <div className="flex items-center justify-between lg:sticky lg:top-0 lg:-mt-24 lg:flex-col lg:items-start lg:self-start lg:pt-24">
           <a href="/changelog/v1.17.0" className="u-text-gray-900 inline-flex text-3xl font-light lg:mb-3">
