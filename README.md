@@ -39,7 +39,7 @@ We love our contributors! Here's how you can contribute:
 
 ## License
 
-BookSpace is licensed under the [MIT License](LICENSE). Feel free to use, modify, and distribute this software according to the terms of the license.
+BookSpace is licensed under the [SSPL License](LICENSE).
 
 ## Support
 
