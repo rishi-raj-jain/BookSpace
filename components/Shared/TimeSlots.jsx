@@ -1,12 +1,15 @@
 import classNames from 'classnames'
 import { useEffect, useState } from 'react'
+import { useSession } from 'next-auth/react'
 import { Text, useToasts } from '@geist-ui/core'
 
 export default function ({ setStartTime, setEndTime, globalTime, selectedDate, spaceName }) {
   const { setToast } = useToasts()
   const [slots, setSlots] = useState([])
+  const { data: session } = useSession()
 
   useEffect(async () => {
+    if (!session) return
     setSlots([])
     for (let i = 0; i < globalTime.length - 1; i++) {
       let startTime = globalTime[i].name.replace(':', '_')
@@ -48,51 +51,53 @@ export default function ({ setStartTime, setEndTime, globalTime, selectedDate, s
   }, [selectedDate])
 
   return (
-    <>
-      <Text h4>Time Slots on {selectedDate}</Text>
-      <div className="mt-5 flex flex-row flex-wrap gap-3">
-        {slots.map((i, _ind) => (
-          <div
-            key={i.startTime}
-            onClick={(e) => {
-              // Don't do anything if this is an old slot
-              if (i.old) {
-                setToast({
-                  text: `That slot is not available for booking anymore.`,
-                  type: 'error',
+    session && (
+      <>
+        <Text h4>Time Slots on {selectedDate}</Text>
+        <div className="mt-5 flex flex-row flex-wrap gap-3">
+          {slots.map((i, _ind) => (
+            <div
+              key={i.startTime}
+              onClick={(e) => {
+                // Don't do anything if this is an old slot
+                if (i.old) {
+                  setToast({
+                    text: `That slot is not available for booking anymore.`,
+                    type: 'error',
+                  })
+                  return
+                }
+                let newClass = i.className
+                let temp = [...slots]
+                if (newClass.includes('border')) {
+                  newClass = ''
+                } else {
+                  newClass = 'border border-4 border-black'
+                }
+                temp.forEach((i) => {
+                  i.className = ''
                 })
-                return
-              }
-              let newClass = i.className
-              let temp = [...slots]
-              if (newClass.includes('border')) {
-                newClass = ''
-              } else {
-                newClass = 'border border-4 border-black'
-              }
-              temp.forEach((i) => {
-                i.className = ''
-              })
-              temp[_ind].className = newClass
-              setSlots(temp)
-              setStartTime(i.startTime.replace('_', ':'))
-              setEndTime(i.endTime.replace('_', ':'))
-            }}
-            className={classNames(
-              i.className,
-              'w-[130px] rounded border px-3 py-2 text-center dark:border-0',
-              { 'bg-black text-white': i.old },
-              { 'bg-red-600 text-white': i.booked && !i.ifTimeTable && !i.old },
-              { 'bg-yellow-600 text-white': i.booked && i.ifTimeTable && !i.old },
-              { 'cursor-pointer bg-green-600 text-white': !i.booked && !i.old }
-            )}
-          >
-            <span>{i.startTime.replace('_', ':')}</span>
-            <span>&nbsp;-&nbsp;</span>
-            <span>{i.endTime.replace('_', ':')}</span>
-          </div>
-        ))}
-      </div>
-    </>
+                temp[_ind].className = newClass
+                setSlots(temp)
+                setStartTime(i.startTime.replace('_', ':'))
+                setEndTime(i.endTime.replace('_', ':'))
+              }}
+              className={classNames(
+                i.className,
+                'w-[130px] rounded border px-3 py-2 text-center dark:border-0',
+                { 'bg-black text-white': i.old },
+                { 'bg-red-600 text-white': i.booked && !i.ifTimeTable && !i.old },
+                { 'bg-yellow-600 text-white': i.booked && i.ifTimeTable && !i.old },
+                { 'cursor-pointer bg-green-600 text-white': !i.booked && !i.old }
+              )}
+            >
+              <span>{i.startTime.replace('_', ':')}</span>
+              <span>&nbsp;-&nbsp;</span>
+              <span>{i.endTime.replace('_', ':')}</span>
+            </div>
+          ))}
+        </div>
+      </>
+    )
   )
 }
