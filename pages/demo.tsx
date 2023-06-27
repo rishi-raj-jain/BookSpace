@@ -60,7 +60,7 @@ export default function () {
     } else setSpace(spaces)
   }
 
-  const submitFeedback = (e) => {
+  const submitFeedback = () => {
     if (!submitting) {
       setSubmitting(true)
       if (window['context'] && window['department'] && window['feedback']) {
