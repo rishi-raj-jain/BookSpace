@@ -1,9 +1,9 @@
 import Link from 'next/link'
-import Logo from '../Shared/Logo'
 import { Button } from '@geist-ui/core'
 import { useRouter } from 'next/router'
 import { Popover } from '@geist-ui/core'
 import UserSettings from './UserSettings'
+import Logo from '@/components/Shared/Logo'
 import { useSession, signIn } from 'next-auth/react'
 
 export default function () {
@@ -11,26 +11,26 @@ export default function () {
   const { pathname } = router
   const { data: session } = useSession()
   return (
-    <div className="h-[56px] flex flex-row items-center justify-between border-b px-5 dark:border-white/25 md:px-0">
+    <div className="flex h-[56px] flex-row items-center justify-between border-b px-5 dark:border-white/25 md:px-0">
       <Link href="/">
         <Logo />
       </Link>
-      {pathname !== '/' && (
-        <div className="hidden flex-row items-center space-x-1 md:flex">
-          <Link href="/">
-            <Button className={'!m-0 !border-0'} auto={true} ghost={pathname === '/'} type={pathname === '/' ? 'secondary' : 'default'}>
-              About
-            </Button>
+      {pathname !== '/' && pathname !== '/pricing' && pathname !== '/changelog' ? (
+        <div className="hidden flex-row items-center space-x-5 md:flex">
+          <Link className="text-black/50 hover:text-black dark:text-white/25 dark:hover:text-white" href="/faq">
+            FAQs
           </Link>
-          <Link href="/faq">
-            <Button className={'!m-0 !border-0'} auto={true} ghost={pathname === '/faq'} type={pathname === '/faq' ? 'secondary' : 'default'}>
-              FAQs
-            </Button>
+          <Link className="text-black/50 hover:text-black dark:text-white/25 dark:hover:text-white" href="/events">
+            Events
           </Link>
-          <Link href="/events">
-            <Button className={'!m-0 !border-0'} auto={true} ghost={pathname === '/events'} type={pathname === '/events' ? 'secondary' : 'default'}>
-              Events
-            </Button>
+        </div>
+      ) : (
+        <div className="hidden flex-row items-center space-x-5 md:flex">
+          <Link className="text-black/50 hover:text-black dark:text-white/25 dark:hover:text-white" href="/changelog">
+            Changelog
+          </Link>
+          <Link className="text-black/50 hover:text-black dark:text-white/25 dark:hover:text-white" href="/pricing">
+            Pricing
           </Link>
         </div>
       )}
