@@ -7,7 +7,6 @@ export default function ({ name, spaceType, building, ifDirect, capacity, create
     <>
       <Card paddingLeft={0.2} paddingRight={0.2} paddingTop={0.1} paddingBottom={0.5} marginTop={1} hoverable>
         <div className="textDiv">
-          {image && <img style={{ borderRadius: '10px', marginBottom: '10px', width: '200px' }} src={image} />}
           {building && <p className="cardText">{`Building: ${building}`}</p>}
           {name && <p className="cardText">{`Name: ${name}`}</p>}
           {spaceType && <p className="cardText">{`Space Type: ${spaceType}`}</p>}
