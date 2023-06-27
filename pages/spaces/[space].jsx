@@ -1,6 +1,6 @@
+import { useRouter } from 'next/router'
 import { useEffect, useState } from 'react'
-import { useSession } from 'next-auth/react'
-import { Button,  Table, Text } from '@geist-ui/core'
+import { Button, Table, Text } from '@geist-ui/core'
 import TimeSlots from '@/components/Shared/TimeSlots'
 import { AlertTriangle, CheckSquare } from '@geist-ui/icons'
 import { CalendarIcon, ClockIcon } from '@heroicons/react/outline'
@@ -29,8 +29,9 @@ const remindersList = [
   },
 ]
 
-export default function ({ space }) {
-  const { data: session } = useSession()
+export default function () {
+  const router = useRouter()
+  const { space } = router.query
   // Define initial empty spaceData
   const [spaceData, setSpaceData] = useState({})
   // Hashtags in the form of value: false or true to determine if the hashtag is active
@@ -63,19 +64,15 @@ export default function ({ space }) {
   }
 
   useEffect(() => {
-    fetch(`/api/spaces/handle?spaceName=${space}`)
-      .then((res) => res.json())
-      .then((res) => {
-        setSpaceData(res.Space)
-      })
+    if (space) {
+      fetch(`/api/spaces/handle?spaceName=${space}`)
+        .then((res) => res.json())
+        .then((res) => {
+          setSpaceData(res.Space)
+        })
+    }
   }, [])
-  const data = [
-    { capacity: 'type', spaceType: 'Content type', type: 'secondary | warning', default: '-' },
-    { property: 'Component', description: 'DOM element to use', type: 'string', default: '-' },
-    { property: 'bold', description: 'Bold style', type: 'boolean', default: 'true' },
-  ]
   return (
-    session &&
     Object.keys(spaceData).length >= 1 && (
       <div className="flex flex-col space-y-4 p-6 md:px-0">
         <Button type={spaceData.ifDirect ? 'success' : 'error'} ghost={true} icon={spaceData.ifDirect ? <CheckSquare /> : <AlertTriangle />} className="!max-w-max" auto>
@@ -289,17 +286,8 @@ export default function ({ space }) {
           </Button>
         </form>
         <div className="mt-10"></div>
-        <TimeSlots setStartTime={setStartTime} setEndTime={setEndTime} spaceName={space} selectedDate={requestDate} globalTime={globalTime} />
+        {space && <TimeSlots setStartTime={setStartTime} setEndTime={setEndTime} spaceName={space} selectedDate={requestDate} globalTime={globalTime} />}
       </div>
     )
   )
-}
-
-export async function getServerSideProps({ params }) {
-  const { space } = params
-  return {
-    props: {
-      space,
-    },
-  }
 }
