@@ -1,6 +1,6 @@
 import classNames from 'classnames'
-import { useToasts } from '@geist-ui/core'
 import { useEffect, useState } from 'react'
+import { Text, useToasts } from '@geist-ui/core'
 
 export default function ({ setStartTime, setEndTime, globalTime, selectedDate, spaceName }) {
   const { setToast } = useToasts()
@@ -11,7 +11,7 @@ export default function ({ setStartTime, setEndTime, globalTime, selectedDate, s
     for (let i = 0; i < globalTime.length - 1; i++) {
       let startTime = globalTime[i].name.replace(':', '_')
       let endTime = globalTime[i + 1].name.replace(':', '_')
-      let resp = await fetch('/api/spaces/handle/slot', {
+      let resp = await fetch('/api/spaces/slot', {
         method: 'POST',
         headers: {
           'content-type': 'application/json',
@@ -49,11 +49,7 @@ export default function ({ setStartTime, setEndTime, globalTime, selectedDate, s
 
   return (
     <>
-      <h1 className="text-3xl font-bold dark:text-gray-200">
-        Time Slots on{' '}
-        <span className="bg-gradient-to-r from-gray-600 via-sky-400 to-sky-600 bg-clip-text text-3xl font-extrabold text-transparent dark:text-white">{selectedDate}</span>
-      </h1>
-      <span className="h-[10px] w-[10px] bg-green-600"></span>
+      <Text h4>Time Slots on {selectedDate}</Text>
       <div className="mt-5 flex flex-row flex-wrap gap-3">
         {slots.map((i, _ind) => (
           <div
