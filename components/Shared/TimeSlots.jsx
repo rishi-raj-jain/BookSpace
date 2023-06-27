@@ -8,9 +8,7 @@ export default function ({ setStartTime, setEndTime, globalTime, selectedDate, s
   const [slots, setSlots] = useState([])
   const { data: session } = useSession()
 
-  useEffect(async () => {
-    if (!session) return
-    setSlots([])
+  const loadSlots = async () => {
     for (let i = 0; i < globalTime.length - 1; i++) {
       let startTime = globalTime[i].name.replace(':', '_')
       let endTime = globalTime[i + 1].name.replace(':', '_')
@@ -48,6 +46,12 @@ export default function ({ setStartTime, setEndTime, globalTime, selectedDate, s
         setSlots((slots) => [...slots, newSlot])
       }
     }
+  }
+
+  useEffect(() => {
+    if (!session) return
+    setSlots([])
+    loadSlots()
   }, [selectedDate])
 
   return (
