@@ -12,7 +12,7 @@ export default function ({ setStartTime, setEndTime, globalTime, selectedDate, s
     for (let i = 0; i < globalTime.length - 1; i++) {
       let startTime = globalTime[i].name.replace(':', '_')
       let endTime = globalTime[i + 1].name.replace(':', '_')
-      let resp = await fetch('/api/spaces/slot', {
+      fetch('/api/spaces/slot', {
         method: 'POST',
         headers: {
           'content-type': 'application/json',
@@ -24,27 +24,29 @@ export default function ({ setStartTime, setEndTime, globalTime, selectedDate, s
           dateBookedFor: selectedDate,
         }),
       })
-      if (!resp.ok) {
-        setToast({
-          text: `Timeslot details for ${selectedDate} from ${startTime} to ${endTime} couldn't be fetched.`,
-          type: 'error',
+        .then((res) => res.json())
+        .then((res) => {
+          let newSlot = {}
+          if (res.timeSlotObj && Object.keys(res.timeSlotObj).length > 0) {
+            newSlot = { startTime, endTime, ...res.timeSlotObj, className: '' }
+          } else {
+            newSlot = { startTime, endTime, booked: false, ifTimeTable: false, className: '' }
+          }
+          let newDate = new Date()
+          let sTime = new Date(`${selectedDate} ${startTime.replace('_', ':')}`)
+          if (newDate < sTime) {
+          } else {
+            newSlot['old'] = true
+          }
+          setSlots((slots) => [...slots, newSlot])
         })
-      } else {
-        let data = await resp.json()
-        let newSlot = {}
-        if (data.timeSlotObj && Object.keys(data.timeSlotObj).length > 0) {
-          newSlot = { startTime, endTime, ...data.timeSlotObj, className: '' }
-        } else {
-          newSlot = { startTime, endTime, booked: false, ifTimeTable: false, className: '' }
-        }
-        let newDate = new Date()
-        let sTime = new Date(`${selectedDate} ${startTime.replace('_', ':')}`)
-        if (newDate < sTime) {
-        } else {
-          newSlot['old'] = true
-        }
-        setSlots((slots) => [...slots, newSlot])
-      }
+        .catch((e) => {
+          console.log(e)
+          setToast({
+            text: `Timeslot details for ${selectedDate} from ${startTime} to ${endTime} couldn't be fetched.`,
+            type: 'error',
+          })
+        })
     }
   }
 

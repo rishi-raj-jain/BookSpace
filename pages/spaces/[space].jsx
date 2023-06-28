@@ -71,8 +71,9 @@ export default function () {
           setSpaceData(res.Space)
         })
     }
-  }, [])
+  }, [space])
   return (
+    space &&
     Object.keys(spaceData).length >= 1 && (
       <div className="flex flex-col space-y-4 p-6 md:px-0">
         <Button type={spaceData.ifDirect ? 'success' : 'error'} ghost={true} icon={spaceData.ifDirect ? <CheckSquare /> : <AlertTriangle />} className="!max-w-max" auto>
