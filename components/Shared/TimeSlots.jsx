@@ -38,8 +38,9 @@ export default function ({ setStartTime, setEndTime, globalTime, selectedDate, s
           } else {
             newSlot['old'] = true
           }
-          setSlots((slots) =>
-            [...slots, newSlot].sort((a, b) => {
+          setSlots((slots) => {
+            const newArr = [...slots, newSlot]
+            newArr.sort((a, b) => {
               var [hours1, minutes1] = a.startTime.split(':')
               var [hours2, minutes2] = b.startTime.split(':')
               // Compare hours
@@ -57,7 +58,8 @@ export default function ({ setStartTime, setEndTime, globalTime, selectedDate, s
               // The times are equal
               return 0
             })
-          )
+            return newArr
+          })
         })
         .catch((e) => {
           console.log(e)
