@@ -38,7 +38,26 @@ export default function ({ setStartTime, setEndTime, globalTime, selectedDate, s
           } else {
             newSlot['old'] = true
           }
-          setSlots((slots) => [...slots, newSlot])
+          setSlots((slots) =>
+            [...slots, newSlot].sort((a, b) => {
+              var [hours1, minutes1] = a.startTime.split(':')
+              var [hours2, minutes2] = b.startTime.split(':')
+              // Compare hours
+              if (parseInt(hours1, 10) > parseInt(hours2, 10)) {
+                return 1
+              } else if (parseInt(hours1, 10) < parseInt(hours2, 10)) {
+                return -1
+              }
+              // Compare minutes if hours are equal
+              if (parseInt(minutes1, 10) > parseInt(minutes2, 10)) {
+                return 1
+              } else if (parseInt(minutes1, 10) < parseInt(minutes2, 10)) {
+                return -1
+              }
+              // The times are equal
+              return 0
+            })
+          )
         })
         .catch((e) => {
           console.log(e)
